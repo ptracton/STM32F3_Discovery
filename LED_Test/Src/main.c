@@ -39,6 +39,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f3xx_hal.h"
+#include "led_driver.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -54,6 +55,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+void soft_delay(uint32_t);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -91,6 +93,14 @@ int main(void)
   MX_GPIO_Init();
 
   /* USER CODE BEGIN 2 */
+  LED_Init(LED_GREEN);
+  LED_Init(LED_ORANGE);
+  LED_Init(LED_RED);
+  LED_Init(LED_BLUE);
+  LED_Init(LED_GREEN_2);
+  LED_Init(LED_ORANGE_2);
+  LED_Init(LED_RED_2);
+  LED_Init(LED_BLUE_2);
 
   /* USER CODE END 2 */
 
@@ -99,6 +109,11 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
+	  Led_TypeDef led;
+	  for (led = LED3; led <=LED10; led++){
+		  LED_Toggle(led);
+		  soft_delay(100000);
+	  }
 
   /* USER CODE BEGIN 3 */
 
@@ -237,7 +252,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void soft_delay(uint32_t delay){
+	uint32_t count;
+	for (count = 0; count < delay; count++){
+		__NOP();
+	}
+	return;
+}
 /* USER CODE END 4 */
 
 /**
