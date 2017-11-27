@@ -112,7 +112,7 @@ int main(void)
 	  Led_TypeDef led;
 	  for (led = LED3; led <=LED10; led++){
 		  LED_Toggle(led);
-		  soft_delay(100000);
+		  soft_delay(10000000);
 	  }
 
   /* USER CODE BEGIN 3 */
